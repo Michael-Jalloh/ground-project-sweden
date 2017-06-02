@@ -4,4 +4,4 @@ flask-script
 flask-login
 flask-principal
 markdown
-
+uwsgi
