@@ -1,0 +1,41 @@
+{% extends "base.html" %} 
+
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<h1>Login</h1>
+			<form action="?{{ request.query_string }}" method="post">
+				<div class="form-group">
+					<label for="email" class=" control-label"><h4>Email</h4></label><br>
+					<input type="text" name="email"><br>
+					<label for="password" class=" control-label"><h4>Password</h4></label><br>
+					<input type="password" name="password"><br><br>
+					<input type="submit" class=" btn btn-primary btn-lg btn-block" value="Login">
+				</div>
+			</form>
+		</div>
+		<div class="col-md-4 col-md-offset-4">
+			<h1>Sign Up</h1>
+			<form action="#" method="post">
+				<div class="form-group">
+					<label for="email" class="control-label"><h4>Email</h4></label><br>
+					<input type="text" name="email"><br>
+					<label for="password" class="control-label"><h4>Password</h4></label><br>
+					<input type="password" name="password1"><br>
+					<label for="password" class="control-label"><h4>Comfirm password</h4></label><br>
+					<input type="pasword" name="password2"><br><br>
+					<input type="submit" class="btn btn-success btn-lg btn-block" value="Sign Up">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+ 

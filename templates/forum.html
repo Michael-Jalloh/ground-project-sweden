@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Forum{% endblock %}
+
+{% block content %}
+
+	{% if comments %}
+	<div class="container" style="height: 450px; overflow-y: scroll; overflow-x: hidden;">
+		{% for comment in comments %}
+		<div class="well well-lg">
+				{{comment.content }}
+				<div class="row">
+					<div class="col-md-4">
+					<label><span class="label-secondary" >{{comment.timestamp.strftime('%H:%M %Y-%m-%d')}} |</span></label>
+					</div>
+					<div class="col-md-4 col-md-offset-4">
+						<a href="{{ url_for('profile.info', user_id=comment.author.id)}}" ><span class="label label-default pull-right"><h6>{{comment.author.username}}</h6></span></a>
+						{% if current_user.is_authenticated %}
+							{% if current_user.role == 'admin' %}
+							<a href="{{ url_for('forum.delete', comment_id=comment.id) }}" class="btn btn-primary pull-right">Delete </a>
+							{% endif %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+		{% endfor %}
+	</div>
+	{% else %}
+	<p><h4>No comments have been created in forum yet. <h4></p>
+	{% endif %}
+
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+
+					<form action="?{{ request.query_string }}" method="post">
+						<div class="form-group">
+							<label for="name" class="control-label"><h4>Comment</h4></label>
+							<textarea class="form-control" id="content" name="content" required style="height:150px;"></textarea><br>
+
+							<input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
+
+						</div>
+					</form>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

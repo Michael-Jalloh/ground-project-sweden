@@ -1,0 +1,15 @@
+{% extends "posts/defaults.html" %}
+
+{% block founders %}
+{% for user in users %}
+<div class="well well-sm">
+  <a href="{{ url_for('profile.info', user_id=user.id)}}" >
+  <h3>{{ user.username}}</h3>
+  <img class="img-circle-about" src="/{{user.pic}}" alt="user profile picture">
+      <p>{{user.about_me }}
+
+    <p>
+    </a>
+  </div>
+{% endfor %}
+{% endblock %}

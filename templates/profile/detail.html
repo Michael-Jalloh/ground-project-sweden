@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+About Me
+{% endblock %}
+
+{% block content %}
+<h2> {{ user.username}}</h2>
+{% if current_user == user %}
+  <a href="{{ url_for('profile.edit')}}" class="btn btn-default">Edit</a><br>
+{% endif %}
+
+{% if user.pic%}
+  <img class="img-circle" src="/{{user.pic}}">
+{% endif %}
+{% if current_user == user %}
+    <form action={{ url_for('profile.photo')}} method="post" enctype=multipart/form-data>
+      <p><input class="btn btn-success" type=file name=file><br>
+         <input class="btn btn-primary" type=submit value=Upload>
+    </form>
+{% endif %}
+<div class="well well-lg">
+<p>
+  {{user.about_me}}
+  </p>
+  </div>
+{% endblock %}

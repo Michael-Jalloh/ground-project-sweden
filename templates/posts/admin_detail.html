@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+	{% if title %}
+
+		{{title}}
+
+	{% endif %}
+{% endblock %}
+
+	{% block content %}
+	{% if current_user.is_authenticated %}
+		{% if post %}
+			<a href="{{ url_for('admin.edit', slug=post.slug) }}" class="btn btn-primary">Edit</a><br>
+		
+		{% endif %}
+	{% endif %}
+
+
+{% if post %}
+		<p><h4>{{ post.html_content }}</h4></p>
+{% else %}
+	
+			<p><h4>Coming soon...</h4></p>
+			
+{% endif %}
+			{% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+	{% if title %}
+
+		{{title}}
+
+	{% endif %}
+{% endblock %}
+
+	{% block content %}
+	{% if current_user.is_authenticated %}
+		{% if post %}
+			<a href="{{ url_for('admin.edit', slug=post.slug) }}" class="btn btn-primary">Edit</a><br>
+		{% else %}
+			<a href="{{ url_for('admin.create') }}" class="btn btn-primary">Create</a><br>
+		{% endif %}
+	{% endif %}
+
+<img src="/static/img/logo.jpeg" alt="logo" >
+{% if post %}
+		<p><h4>{{ post.html_content }}</h4></p>
+{% else %}
+
+			<p><h4>Coming soon...</h4></p>
+
+{% endif %}
+
+{% block founders %}
+{% for user in users %}
+<div class="well well-sm">
+  <a href="{{ url_for('profile.info', user_id=user.id)}}" >
+  <h3>{{ user.username}}</h3>
+  <img class="img-circle-about" src="/{{user.pic}}" alt="user profile picture">
+      <p>{{user.about_me }}
+
+    <p>
+    </a>
+  </div>
+{% endfor %}
+	{% endblock %}
+
+
+			{% endblock %}

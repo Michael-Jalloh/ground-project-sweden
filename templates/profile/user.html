@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %} About Me {% endblock %}
+
+{% block content %}
+<h2>About Me</h2>
+
+<form action="{{url_for('profile.edit')}}" class="form-horizontal" method="post">
+  <div class="form-group">
+    <label for="username" class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-10">
+      <input class="form-control" id="username" name="username" type="text" value={{current_user.username}} required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <input class="form-control" id="email" name="email" type="text" value={{current_user.email}} required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="about_me" class="col-sm-2 control-label">About Me</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="about_me" name="about_me" style="height: 400px; width: 400px" required>{{ current_user.about_me }}</textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button class="btn btn-default" href="{{ url_for('profile.edit')}}" type="submit">Save</button>
+      <a class="btn btn-primary" href="{{ url_for('profile.info', user_id=current_user.id)}}">Cancel</a>
+</form>
+
+{% endblock %}
