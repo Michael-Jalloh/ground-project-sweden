@@ -52,6 +52,12 @@ def register_blueprint(app):
 	@application.errorhandler(500)
 	def internal_error(e):
 		return render_template('500.html')
+
+	@application.errorhandler(413)
+	def entity_too_large(e):
+		return render_template('413.html')
+
+
 register_blueprint(application)
 
 if __name__ == '__main__':
